@@ -23,7 +23,6 @@
 		2. t_board 테이블에 새로운게시글 삽입
 		3. 클라이언트에게 결과 전송
 	 */
-
 	request.setCharacterEncoding("utf-8");
 	String saveFolder = "/Users/jyp/Documents/Mission-Web/src/main/webapp/upload"; // 원래는 탐캣서버에 위치해야함
 	MultipartRequest multi = new MultipartRequest(request, saveFolder, 1024 * 1024 * 3, "utf-8", new KopoFileNamePolicy());

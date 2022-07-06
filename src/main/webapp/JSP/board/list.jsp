@@ -26,6 +26,8 @@
 	<title>게시물 목록</title>
 	<link rel="stylesheet" href="/resources/css/layout.css">
 	<link rel="stylesheet" href="/resources/css/table.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"
 	        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script>
@@ -52,36 +54,58 @@
 <header>
 	<jsp:include page="/JSP/include/topMenu.jsp"/>
 </header>
-<section>
-	<div align="center">
-		<hr>
-		<h2>전체게시글 조회</h2>
-		<hr>
-		<br>
-		<table border="1" style="width:100%">
+<section class="mt-5 mb-5">
+	<figure class="text-center">
+		<blockquote class="blockquote">
+			<p class="h3">게시판</p>
+		</blockquote>
+		<figcaption class="blockquote-footer">
+			I want go home to<cite title="Source Title"> Suwon</cite>
+		</figcaption>
+	</figure>
+	<div class="container position-relative">
+	<table class="table">
+		<thead class="table-light">
+		<tr>
+			<th width="7%">번호</th>
+			<th>제목</th>
+			<th width="16%">작성자</th>
+			<th width="20%">등록일</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${ list }" var="board" varStatus="loop">
 			<tr>
-				<th width="7%">번호</th>
-				<th>제목</th>
-				<th width="16%">작성자</th>
-				<th width="20%">등록일</th>
+				<td> ${ board.no } </td>
+				<td>
+					<a href="javascript:checkLogin(${board.no})">
+						<c:out value="${board.title}"/>
+					</a>
+				</td>
+				<td><c:out value=" ${ board.writer }"/></td>
+				<td><c:out value="${board.regDate}"/></td>
 			</tr>
-			<c:forEach items="${ list }" var="board" varStatus="loop">
-				<tr <c:if test="${loop.count mod 2 eq 0}">class="even"</c:if>>
-					<td> ${ board.no } </td>
-					<td>
-						<a href="javascript:checkLogin(${board.no})">
-							<c:out value="${board.title}"/>
-						</a>
-					</td>
-					<td><c:out value=" ${ board.writer }"/></td>
-					<td><c:out value="${board.regDate}"/></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br>
-		<c:if test="${not empty member}">
-			<button id="addBtn">새글 등록</button>
-		</c:if>
+		</c:forEach>
+		</tbody>
+	</table>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled">
+					<a class="page-link">Previous</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#">Next</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="position-absolute bottom-0 end-0">
+			<c:if test="${not empty member}">
+				<button type="button" class="btn btn-outline-secondary" id="addBtn">새글 등록</button>
+			</c:if>
+		</div>
 	</div>
 </section>
 <footer>
