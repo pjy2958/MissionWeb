@@ -77,45 +77,6 @@
 <header>
 	<jsp:include page="/JSP/include/topMenu.jsp"/>
 </header>
-<%--<section>--%>
-<%--		<div align="center">--%>
-<%--			<hr>--%>
-<%--			<h2>새글 등록폼</h2>--%>
-<%--			<hr>--%>
-<%--			<br>--%>
-<%--			&lt;%&ndash; onsubmit -> return true / return false &ndash;%&gt;--%>
-<%--			<form action="write.jsp" method="post" name="writeForm" onsubmit="return checkForm()"--%>
-<%--			      enctype="multipart/form-data">--%>
-<%--				<table border="1" style="width: 80%">--%>
-<%--					<tr>--%>
-<%--						<th width="25%">제목</th>--%>
-<%--						<td><input type="text" name="title"></td>--%>
-<%--					</tr>--%>
-<%--					<tr>--%>
-<%--						<th width="25%">작성자</th>--%>
-<%--						<td><input type="text" name="writer"></td>--%>
-<%--					</tr>--%>
-<%--					<tr>--%>
-<%--						<th width="25%">내용</th>--%>
-<%--						<td>--%>
-<%--							<textarea rows="5" cols="80" name="content"></textarea>--%>
-<%--						</td>--%>
-<%--					</tr>--%>
-<%--					<tr>--%>
-<%--						<th>첨부파일</th>--%>
-<%--						<td>--%>
-<%--							<input type="file" name="attachfile1"><br>--%>
-<%--							<input type="file" name="attachfile2"><br>--%>
-<%--						</td>--%>
-<%--					</tr>--%>
-<%--				</table>--%>
-<%--				<br>--%>
-<%--				<input type="submit" value="등   록">&nbsp;&nbsp;--%>
-<%--				<button type="button" id="listBtn">목록</button>--%>
-<%--			</form>--%>
-<%--		</div>--%>
-<%--</section>--%>
-
 <div class="page-wrapper p-t-100 p-b-50">
 	<div class="wrapper wrapper--w900">
 		<div class="card card-6">
@@ -158,8 +119,8 @@
 						</div>
 					</div>
 					<div class="card-footer" align="center">
-						<button class="btn btn--radius-2 btn--blue-2 bg-dark text-white" type="submit">새 글 등 록</button>
-						<button class="btn btn--radius-2 btn--blue-2 bg-dark text-white" type="button" id="listBtn">목 록</button>
+						<button class="btn btn--radius-2 btn--blue-2 bg-dark text-white" type="submit" style="opacity: 0.9;">새 글 등 록</button>
+						<button class="btn btn--radius-2 btn--blue-2 bg-dark text-white" type="button" style="opacity: 0.9" id="listBtn">목 록</button>
 					</div>
 				</form>
 			</div>

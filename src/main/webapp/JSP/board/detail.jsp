@@ -16,15 +16,15 @@
 //	String writeNumber = request.getParameter("no");  // 글 번호
 
 	BoardDAO dao = new BoardDAO();
-    // 1. 게시물 조회
+	// 1. 게시물 조회
 	BoardVO board = dao.selectByNo(writeNumber);
 
-    // 2. 첨부파일 조회
+	// 2. 첨부파일 조회
 	List<BoardFileVO> fileList = new ArrayList<>();
-    fileList = dao.selectFileByNo(writeNumber);
+	fileList = dao.selectFileByNo(writeNumber);
 
 	pageContext.setAttribute("board", board);
-    pageContext.setAttribute("fileList", fileList);
+	pageContext.setAttribute("fileList", fileList);
 %>
 <!DOCTYPE html>
 <html>
@@ -32,6 +32,11 @@
 	<title>게시판 상세</title>
 	<link rel="stylesheet" href="/resources/css/layout.css">
 	<link rel="stylesheet" href="/resources/css/table.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	        crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<script>
         function doAction(type) {
             switch (type) {
@@ -40,11 +45,11 @@
                     break;
                 case 'D' :
                     if (confirm('삭제하시겠습니까?')) {
-                        location.href = "delete.jsp?no=${param.no}";
+                        location.href = " delete.jsp?no=${param.no}";
                     }
                     break;
                 case 'L' :
-                    location.href = "list.jsp"
+                    location.href = " list.jsp"
                     break;
             }
         }
@@ -54,53 +59,45 @@
 <header>
 	<jsp:include page="/JSP/include/topMenu.jsp"/>
 </header>
-<section>
-	<div align="center">
-		<hr>
-		<h2>게시판 상세</h2>
-		<hr>
-		<br>
-		<table border="1" style="width: 80%">
-			<%--	3.화면 추출 --%>
-			<tr>
-				<th width="25%">번호</th>
-				<td>${ board.no }</td>
-			</tr>
-			<tr>
-				<th width="25%">제목</th>
-				<td>${ board.title }</td>
-			</tr>
-			<tr>
-				<th width="25%">작성자</th>
-				<td>${ board.writer }</td>
-			</tr>
-			<tr>
-				<th width="25%">내용</th>
-				<td><c:out value="${board.content}"/></td>
-			</tr>
-			<tr>
-				<th width="25%">조회수</th>
-				<td>${ board.viewCnt }</td>
-			</tr>
-			<tr>
-				<th width="25%">등록일</th>
-				<td>${ board.regDate }</td>
-			</tr>
-			<tr>
-				<th>첨부파일</th>
-				<td>
+<section class="mt-5 mb-5">
+	<div class="container-lg">
+		<figure class="text-center">
+			<blockquote class="blockquote">
+				<p class="h3">${ board.title }</p>
+			</blockquote>
+			<figcaption class="blockquote-footer">
+				${ board.regDate } <cite title="Source Title"> ${ board.writer }</cite> 작성
+			</figcaption>
+		</figure>
+		<div class="card">
+			<div class="card-header">
+				<div class="text-muted" style="float: left">
+					${ board.no }번 글
+				</div>
+				<div class="text-muted" style="float: right">
+					조회수 ${ board.viewCnt }회
+				</div>
+			</div>
+			<div class="card-body">
+<%--				<h5 class="card-title"></h5>--%>
+				<p class="card-text fs-5" style="min-height: 300px"><c:out value="${board.content}"/></p>
+			</div>
+			<div class="card-footer text-muted">
+				첨부파일
 					<c:forEach items="${fileList}" var="fileVO">
 						<a href="/upload/${fileVO.fileSaveName}">
-						${fileVO.fileOriName}</a>
+								${fileVO.fileOriName}</a>
 						(${fileVO.fileSize} bytes)
 					</c:forEach>
-				</td>
-			</tr>
-		</table>
-		<br>
-		<button onclick="doAction('U')">수 정</button>&nbsp;&nbsp;
-		<button onclick="doAction('D')">삭 제</button>&nbsp;&nbsp;
-		<button onclick="doAction('L')">목 록</button>&nbsp;&nbsp;
+				<div style="float: right">
+					<c:if test="${board.writer eq member.id}">
+				<button class="btn btn-secondary" onclick="doAction('U')">수 정</button>&nbsp;&nbsp;
+				<button class="btn btn-secondary" onclick="doAction('D')">삭 제</button>&nbsp;&nbsp;
+					</c:if>
+				<button class="btn btn-secondary" onclick="doAction('L')">목 록</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 <footer>

@@ -98,7 +98,7 @@ public class MemberDAO {
 
     public MemberVO login(MemberVO member) {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT ID, PASSWORD, NAME, TYPE ");
+        sql.append("SELECT *");
         sql.append("  FROM T_MEMBER ");
         sql.append(" WHERE ID = ? AND PASSWORD = ? ");
         try (
@@ -114,7 +114,16 @@ public class MemberDAO {
             memberVO.setId(rs.getString("ID"));
             memberVO.setPassword(rs.getString("PASSWORD"));
             memberVO.setName(rs.getString("NAME"));
+            memberVO.setEmail_id(rs.getString("EMAIL_ID"));
+            memberVO.setEmail_domain(rs.getString("EMAIL_DOMAIN"));
+            memberVO.setTel1(rs.getString("TEL1"));
+            memberVO.setTel2(rs.getString("TEL2"));
+            memberVO.setTel3(rs.getString("TEL3"));
+            memberVO.setPost(rs.getString("POST"));
+            memberVO.setBasic_addr(rs.getString("BASIC_ADDR"));
+            memberVO.setDetail_addr(rs.getString("DETAIL_ADDR"));
             memberVO.setType(rs.getString("TYPE"));
+            memberVO.setReg_date(rs.getString("REG_DATE"));
             return memberVO;
         } catch (Exception e) {
             e.printStackTrace();

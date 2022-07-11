@@ -39,7 +39,7 @@
 					<c:choose>
 						<c:when test="${empty member}">
 							<li class="nav_item me-3">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="/JSP/register/register.jsp">
 									회원가입
 								</a>
 							</li>
@@ -51,7 +51,7 @@
 						</c:when>
 						<c:when test="${not empty member}">
 							<li class="nav_item me-3">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="/JSP/board/mypage.jsp">
 									마이페이지
 								</a>
 							</li>
